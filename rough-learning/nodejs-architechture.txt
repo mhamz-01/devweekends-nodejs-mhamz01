@@ -1,0 +1,18 @@
+client - > request server (node js )
+
+inside node js the requests arrive in a first in first out manner 
+
+[req6 , req5 , req 4 , req 3 , req 2 , req 1] - event loop watching the operations whether they are blocking or non blocking 
+sync or async
+
+if non blocking operation the event loop simply process the request and send back the response 
+
+but if the operation is blocking then it goes to thread pool and ask him to assign this operation a worker and 
+if there is a worker its assigned to that process and process it and send back the result
+
+link to slides below 
+slides.com/piyushgargdev/nodejs 
+
+
+remember the thread pool size is as per your cpu core dont write too much blocking functions as it is possible that too much trafffic might crash
+your architechture use safer approach 

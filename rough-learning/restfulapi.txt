@@ -1,0 +1,14 @@
+1- client and server difference 
+2- respect http methods (Get, post , patch , delete) - dont always use get post , use post patch put delete as per rules
+
+
+standard to communicate between client and server
+
+
+client - browser html -> SSR when we know when the client run only on web broser so html is used 
+
+but later scalable backend uses JSON
+
+
+
+Client Site rendereing - do react - slow - json

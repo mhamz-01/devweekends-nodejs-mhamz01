@@ -1,0 +1,10 @@
+400 - client side my handled error
+
+403 - payment error maybe
+
+404 - not found 
+
+
+logical error on server is 500 
+
+

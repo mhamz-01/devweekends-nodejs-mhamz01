@@ -1,0 +1,1 @@
+like in posgres and sql we say we have x table , similarly here in mongodb its no sql and the table here is called as collection

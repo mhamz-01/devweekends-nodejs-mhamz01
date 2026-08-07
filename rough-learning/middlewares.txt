@@ -1,0 +1,9 @@
+middleware
+
+client to server get user in between would be middleware 
+middle ware checks whether to send msg to server or not 
+
+client req -------> middleware ------> server
+
+client req ----> m1 (check if hacker ) ----> m2(check creds) -----> m3 (check authorization)----> server
+middleware is a middle man 

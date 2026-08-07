@@ -1,0 +1,21 @@
+Stateful -> which maintains data on server side means an example of ticket parking for a car is maintained by parking owner 
+
+similarly client and user -> sessionuid is provided as a ticket in parking -> this uuid is used then in cookie and stored in server 
+if this exist means user is authenticated and is logged in if no then means not logged it
+
+
+But problem in state ful -> stores memory , lost when server is refereshed 
+
+here come the stateless means that the server would not save the token with it self rather json web token is used means that your ticket with name 
+and id would get stamped 
+this would save anny outsider to not to disrupt your data 
+
+that stamp is your seccret key written by you
+
+
+understand that the token jwt never to show in browser it can be copied and used to login 
+
+cookie- > browser maintained - keep the token for that specific domain not another and can also use to keep it save for sub domains like
+in google one login and then remebers for others but limitation is only for browser (issue for mobile application)
+
+2nd method is response maintains header bearer  (json type token) Header "Authorization"  Bearee "dasdasdasdasdas"

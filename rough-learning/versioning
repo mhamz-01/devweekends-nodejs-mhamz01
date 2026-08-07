@@ -1,0 +1,11 @@
+4.18.3
+
+3rd part is least important 
+
+2nd part is important major bug fix( might be new feature )
+
+1st part is major release / Breaking update - might not use cause for exisitng it might break your code -  but for new application
+read docs and use this 
+
+^ -> this means auto update until 1st number change 
+~ -> only update last digit
