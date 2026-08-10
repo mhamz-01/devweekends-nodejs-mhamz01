@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <% if (user) { %>
+            <span>Signed in as <%= user.email %></span>
+            <a href="/user/logout">Logout</a>
+            <a href="/blog/add-new">Add blog</a>
+        <% } else { %>
+            <a href="/user/signin">Sign In</a>
+            <a href="/user/signup">Sign Up</a>
+        <% } %>
+    </nav>
+
+    <h1>Blogify</h1>
+    <p>A very simple blog app built with Node.js, Express and MongoDB.</p>
+
+    <% const blogList = typeof blogs !== 'undefined' ? blogs : [] %>
+    <% if (blogList.length === 0) { %>
+        <p>No blogs yet.</p>
+    <% } else { %>
+        <div class="blog-grid">
+            <% blogList.forEach(blog => { %>
+                <div class="blog-card">
+                    <% if (blog.coverImageURL) { %>
+                        <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>">
+                    <% } else { %>
+                        <div class="blog-card-placeholder">No image</div>
+                    <% } %>
+                    <h3><%= blog.title %></h3>
+                    <a href="/blog/<%= blog._id %>" class="view-btn">View</a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <%- include('partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <% if (user) { %>
+            <span>Signed in as <%= user.email %></span>
+            <a href="/user/logout">Logout</a>
+            <a href="/blog/add-new">Add blog</a>
+        <% } else { %>
+            <a href="/user/signin">Sign In</a>
+            <a href="/user/signup">Sign Up</a>
+        <% } %>
+    </nav>
+
+    <% if (blog.coverImageURL) { %>
+        <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>" class="blog-cover">
+    <% } %>
+
+    <h1><%= blog.title %></h1>
+    <p class="blog-meta">By <%= blog.createdBy.fullName %> &middot; <%= new Date(blog.createdAt).toLocaleDateString() %></p>
+
+    <div class="blog-body"><%= blog.body %></div>
+
+    <hr class="divider">
+
+    <h2>Comments</h2>
+
+    <% if (user) { %>
+        <form action="/blog/comment/<%= blog._id %>" method="POST" class="comment-form">
+            <textarea name="content" placeholder="Write a comment..." rows="3" required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    <% } else { %>
+        <p><a href="/user/signin">Sign in</a> to leave a comment.</p>
+    <% } %>
+
+    <% if (comments && comments.length > 0) { %>
+        <ul class="comment-list">
+            <% comments.forEach(comment => { %>
+                <li class="comment">
+                    <p class="comment-author"><%= comment.createdBy.fullName %></p>
+                    <p class="comment-content"><%= comment.content %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No comments yet.</p>
+    <% } %>
+
+    <%- include('partials/scripts') %>
+</body>
+</html>
