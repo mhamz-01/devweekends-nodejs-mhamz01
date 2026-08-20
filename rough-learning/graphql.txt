@@ -1,0 +1,14 @@
+in rest api suppose you want todo list and there are 4 fields
+id , name , completed , date
+
+but you want only name and completeed 
+
+the issue of rest api that it calls all the fields and waste the one not necessary 
+
+this cause latency 
+
+graph ql jumps in and optimize this problme
+
+in a single query you will request only what is wanted like suppose only name and completed 
+
+c:\Users\hamza\OneDrive\Pictures\Screenshots\Screenshot 2026-08-16 181835.png

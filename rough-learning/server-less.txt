@@ -1,0 +1,18 @@
+Monolithic ec2 architechture
+
+understand the aws deployment architechture 
+
+suppose you have rest api backend deployed on aws - ec2 having 2gb ram 500 gb storage - code is deplloyed on this rate is 0.02/hr but suppose the one month the cost goes up due to more 
+traffic so in such case the cost goes up to so for that we have ASG spare where we have 6gb ram 1000 gb storage in such case asg will be used
+
+
+
+Serverless 
+
+code deployed aws decide everything and rate is per invocation 
+
+user come - request sent to server - invocation occur
+
+innvocation calculated based on user comes and request on that basis billing is done 
+not like per hr constant 
+Scalling here is automatic 
