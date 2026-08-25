@@ -21,9 +21,6 @@ export default function Home() {
       {blogs.length === 0 && <p>No blogs yet. Be the first to write one!</p>}
       {blogs.map((blog) => (
         <Link to={`/blog/${blog._id}`} key={blog._id} className="blog-card">
-          {blog.coverImageURL && (
-            <img src={`http://localhost:4000${blog.coverImageURL}`} alt={blog.title} />
-          )}
           <div>
             <h2>{blog.title}</h2>
             <p>By {blog.createdBy?.fullName || 'Unknown'}</p>

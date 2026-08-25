@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
 export async function getBlogs() {
   const res = await fetch(`${BASE_URL}/blog`, { credentials: 'include' })
@@ -10,11 +10,12 @@ export async function getBlog(id) {
   return res.json()
 }
 
-export async function createBlog(formData) {
+export async function createBlog(title, body) {
   const res = await fetch(`${BASE_URL}/blog/add-new`, {
     method: 'POST',
     credentials: 'include',
-    body: formData,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, body }),
   })
   return res.json()
 }

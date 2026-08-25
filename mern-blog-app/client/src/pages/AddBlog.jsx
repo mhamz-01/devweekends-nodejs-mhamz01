@@ -8,7 +8,6 @@ export default function AddBlog() {
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
-  const [coverImage, setCoverImage] = useState(null)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -19,12 +18,7 @@ export default function AddBlog() {
     setError('')
 
     try {
-      const formData = new FormData()
-      formData.append('title', title)
-      formData.append('body', body)
-      if (coverImage) formData.append('coverImage', coverImage)
-
-      const data = await createBlog(formData)
+      const data = await createBlog(title, body)
       if (data.blog) {
         navigate(`/blog/${data.blog._id}`)
       } else {
@@ -57,7 +51,6 @@ export default function AddBlog() {
         rows={10}
         required
       />
-      <input type="file" accept="image/*" onChange={(e) => setCoverImage(e.target.files[0])} />
       <button type="submit" disabled={submitting}>{submitting ? 'Publishing...' : 'Publish'}</button>
     </form>
   )

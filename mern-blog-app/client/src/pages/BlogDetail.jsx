@@ -35,9 +35,6 @@ export default function BlogDetail() {
 
   return (
     <div className="blog-detail">
-      {blog.coverImageURL && (
-        <img src={`http://localhost:4000${blog.coverImageURL}`} alt={blog.title} />
-      )}
       <h1>{blog.title}</h1>
       <p className="author">By {blog.createdBy?.fullName}</p>
       <p className="body">{blog.body}</p>
