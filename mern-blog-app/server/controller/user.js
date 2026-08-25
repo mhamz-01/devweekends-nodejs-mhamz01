@@ -4,6 +4,15 @@ const { createTokenForuser } = require('../services/authentication')
 
 const router = Router()
 
+// In production the client and server live on different Vercel domains, so the
+// auth cookie needs SameSite=None + Secure to be sent cross-site.
+const isProd = process.env.NODE_ENV === 'production'
+const cookieOptions = {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax'
+}
+
 // GET /user/me - tells the React app who (if anyone) is currently logged in
 router.get('/me', (req, res) => {
     return res.json({ user: req.user })
@@ -15,7 +24,7 @@ router.post('/signup', async (req, res) => {
         const user = await User.create({ fullName, email, password })
 
         const token = createTokenForuser(user)
-        res.cookie('token', token, { httpOnly: true })
+        res.cookie('token', token, cookieOptions)
 
         return res.status(201).json({
             user: { _id: user._id, fullName: user.fullName, email: user.email, role: user.role }
@@ -34,7 +43,7 @@ router.post('/signin', async (req, res) => {
     }
 
     const token = createTokenForuser(user)
-    res.cookie('token', token, { httpOnly: true })
+    res.cookie('token', token, cookieOptions)
 
     return res.json({
         user: { _id: user._id, fullName: user.fullName, email: user.email, role: user.role }
@@ -42,7 +51,7 @@ router.post('/signin', async (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    res.clearCookie('token')
+    res.clearCookie('token', cookieOptions)
     return res.json({ message: 'Logged out' })
 })
 

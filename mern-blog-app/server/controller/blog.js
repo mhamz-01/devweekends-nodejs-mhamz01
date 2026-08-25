@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const Blog = require('../models/blog')
 const Comment = require('../models/comments')
-const upload = require('../middlewares/multer')
 const router = Router()
 
 // GET /blog - list all blogs, newest first (used by the home page)
@@ -10,18 +9,16 @@ router.get('/', async (_req, res) => {
     return res.json({ blogs })
 })
 
-router.post('/add-new', upload.single('coverImage'), async (req, res) => {
+router.post('/add-new', async (req, res) => {
     if (!req.user) {
         return res.status(401).json({ error: 'You must be signed in to create a blog' })
     }
 
     const { title, body } = req.body
-    const coverImageURL = req.file ? `/uploads/covers/${req.file.filename}` : ''
 
     const blog = await Blog.create({
         title,
         body,
-        coverImageURL,
         createdBy: req.user._id
     })
 
